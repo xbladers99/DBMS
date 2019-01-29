@@ -56,7 +56,23 @@
    
    
    
+   Q1 -  show id,city of each city topper
+   Q2 -  show id,name of student of bhopal city whose marks are above 80% and below 95%
+   Q3 -  show average cgpa of obc students
+   Q4 -  show details of only 1 female student of each city
+   Q5 -  show details of male and female toppr of each branch
    
+   
+   SOLUTIONS :-
+   Q1  -  select id,city from student where cgpa in (select max(cgpa) from student group by city);  
+   
+   Q2  -  select id,name from student where city='bhopal' and cgpa>=8 and cgpa<=9;
+   
+   Q3  -  select avg(cgpa) from student where category='obc'
+   
+   Q4  -  select * from student where gender='f' group by city;
+   
+   Q5  -  select * from student where cgpa in (select max(cgpa) from student group by gender,branch);
    
    
    
