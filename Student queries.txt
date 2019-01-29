@@ -1,0 +1,80 @@
+    CREATE TABLE info(
+    id int not null,
+    name varchar(40) not null,
+    gender varchar(1),
+    contact varchar(10),
+    address varchar(40),
+    branch varchar(10),
+    city varchar(20),
+    category varchar(10),
+    cgpa double,
+    sgpa double);
+
+   INSERT INTO info 
+   VALUES
+   ( 171112233, "mayank patel","m", "9109810002","hostel no 5","CSE", "INDORE","GEN",8.66,8.55 );
+   
+   INSERT INTO info 
+   VALUES
+   ( 171112299, "atik","m", "9874563210","hostel no 5","CSE", "raipur","GEN",8.2,6.2 );
+   
+   INSERT INTO info 
+   VALUES
+   ( 171112231, "vedant mathe","m", "9654123023","hostel no 5","CSE", "jhansi","GEN",7.23,9 );
+   
+   INSERT INTO info
+   VALUES
+   ( 171112233, "deepak bhilala","m", "4561237890","hostel no 5","CSE", "khandwa","SC",9,6.32 );
+   
+   INSERT INTO info
+   VALUES
+   ( 171112232, "dhangi","m", "4561237690","hostel no 5","CSE", "INDORE","OBC",9.23,6.32 );
+   
+   INSERT INTO info
+   VALUES
+   ( 171112212, "siddhartha","m", "4551237890","hostel no 5","CSE", "INDORE","SC",4.3,6.89 );
+   
+   INSERT INTO info
+   VALUES
+   ( 171112245, "minesh","m", "6561237890","hostel no 5","CSE", "khandwa","SC",10,2.36 );
+   
+   INSERT INTO info
+   VALUES
+   ( 171142245, "rahul","m", "6561247890","hostel no 5","CSE", "bhopal","OBC",7.3,9.36 );
+   INSERT INTO info
+   VALUES
+   ( 171112245, "sonali","f", "4561237890","vaishali nagar","CSE", "bhopal","OBC",5.0,4.36 );
+   INSERT INTO info
+   VALUES
+   ( 171112245, "ritika","f", "6561237890","annapurna sq.","CSE", "bhopal","OBC",1.45,2.89 );
+   
+   INSERT INTO info
+   VALUES
+   ( 171112245, "anushka","f", "9231237890","geeta bhawan sq.","CSE", "bhopal","OBC",8.6,2.89 );
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   //QUESTION 1
+   SELECT id,name FROM info WHERE (SELECT MAX(cgpa) from info GROUP BY city) ;
+   SELECT MAX(cgpa) from info GROUP BY city;
+   SELECT id,name FROM info WHERE cgpa IN (SELECT MAX(cgpa) from info GROUP BY city) ;
+   
+   //QUESTION 2
+   SELECT id,name FROM info WHERE city="bhopal" AND cgpa BETWEEN 8.0 AND 9.5 ;
+   
+   //QUESTION 3
+   SELECT AVG (cgpa) FROM info WHERE category="OBC";
+   
+   //QUESTION 4
+    SELECT * from info WHERE gender="f" LIMIT 1;
+   
+   //QUESTION 5
+   
