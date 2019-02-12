@@ -1,0 +1,86 @@
+CREATE database mayank;
+
+use mayank;
+
+CREATE TABLE student(
+    schno int not null primary key,
+    fname varchar(40) not null,
+    lname varchar(40) not null,
+    sex varchar(1),
+    pno varchar(10),
+    address varchar(40),
+    DOB date);
+    
+CREATE TABLE course(
+	code int not null primary key,
+	cname varchar(40),
+	instructor varchar(40),
+	semester int
+	);
+	
+CREATE TABLE grade(
+	
+	schno int,
+	FOREIGN KEY (schno) REFERENCES student(schno),
+	code int,
+	FOREIGN KEY (code) REFERENCES course(code),
+	marks int,
+	grade varchar(3),
+	primary key(schno,code)
+	);
+	
+INSERT INTO student() VALUES (17111220,"MAYANK","PATEL","M","1000000000","hostel-5","1999-07-16");	
+INSERT INTO student() VALUES (17111221,"VEDANT","PATEL","M","1000000001","hostel-5","1999-07-23");
+INSERT INTO student() VALUES (17111222,"ATIK","PATEL","M","1000000002","hostel-5","1999-08-12");
+INSERT INTO student() VALUES (17111223,"DEEPAK","PATEL","M","1000000003","hostel-5","1999-11-10");
+INSERT INTO student() VALUES (17111224,"PRATEEK","VERMA","F","1000000004","hostel-7","1999-2-10");
+INSERT INTO student() VALUES (17111225,"SAMIKSHA","PATEL","F","1000000003","hostel-7","1999-3-10");
+INSERT INTO student() VALUES (17111226,"KRATI","PATEL","F","1000000003","hostel-7","1999-10-10");
+INSERT INTO student() VALUES (17111227,"MINAL","PATEL","F","1000000003","hostel-7","1999-11-16");
+
+
+INSERT INTO course() VALUES(100,"DBMS","JTC-Sir",4);
+INSERT INTO course() VALUES(101,"PQT","Rasool Akhtar",4);
+INSERT INTO course() VALUES(102,"ADA","Shweta jain",4);
+INSERT INTO course() VALUES(103,"TOC","Nilay Khare Sir",4);
+INSERT INTO course() VALUES(104,"Software engg","Shreemoyee Biswas",4);
+INSERT INTO course() VALUES(105,"Comupter Arch","Rajesh Wadhwani",4);
+INSERT INTO course() VALUES(106,"Digital Electronics","JTC-Sir",3);
+
+
+INSERT INTO grade() VALUES(17111220,100,100,"A++");
+INSERT INTO grade() VALUES(17111220,101,98,"A+");
+INSERT INTO grade() VALUES(17111220,102,90,"A++");
+INSERT INTO grade() VALUES(17111220,103,89,"A");
+INSERT INTO grade() VALUES(17111220,104,99,"A+");
+INSERT INTO grade() VALUES(17111220,105,94,"A");
+INSERT INTO grade() VALUES(17111220,106,90,"A+");
+
+INSERT INTO grade() VALUES(17111221,106,56,"A+");
+INSERT INTO grade() VALUES(17111221,104,86,"B+");
+INSERT INTO grade() VALUES(17111221,105,97,"C");
+
+INSERT INTO grade() VALUES(17111222,100,34,"C");
+INSERT INTO grade() VALUES(17111222,101,89,"C++");
+INSERT INTO grade() VALUES(17111222,104,78,"B");
+INSERT INTO grade() VALUES(17111222,106,34,"D");
+
+
+
+
+
+
+//QUERIES
+
+Q1-Find name of all the instructors and their courses who taught in 4th semester.
+SELECT instructor, cname from course where semester=4;
+
+Q2- Find course name and instructor name of ll the courses on which MAYANK PATEL is enrolled on.
+SELECT cname,instructor from course where code in (SELECT code from grade where schno =(SELECT schno from student where fname="VEDANT" and lname="PATEL"));
+
+
+
+
+
+
+
