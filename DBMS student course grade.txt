@@ -1,0 +1,20 @@
+Q2 -    
+select C_name,instructor from course c join (select C_code from grade g join 
+(select schno from student where fname="vedant") s on g.schno=s.schno) t on c.C_code =t.C_code;
+
+
+Q3-
+
+select C_code,marks,grade from grade g join (select schno from student where fname="vedant")
+s on g.schno=s.schno;
+
+Q4-
+
+select fname,lname,address from student s join (select distinct(schno) from grade g join 
+(select C_code from course where instructor ="jtc")
+s on g.C_code =s.C_code ) t on s.schno =t.schno;
+
+Q5-
+
+select fname,lname,address from student s join (select (distinct(schno) from grade g join  
+(select C_code from course where sem=4) s  on g.C_code = s.C_code ) t on s.schno=t.schno;
