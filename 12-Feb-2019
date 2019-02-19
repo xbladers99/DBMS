@@ -84,8 +84,9 @@ Q3- Find the name and schno of all students enrolled in atleast one course taugh
 	SELECT distinct schno from grade where code in (SELECT code from course where instructor LIKE '%JTC%');
 	
 Q4- Find the name and schno of all students enrolled in all courses taught by JTC sir.
-	S-(SELECT code from course where instructor LIKE '%JTC%')
-	R- SELECT schno from course where code
+	select * from student s where not exists (select * from grade g where g.code in
+           (select code from course where instructor="JTC-Sir")  and not exists (select * from grade x where
+            x.code=g.code  and s.schno=x.schno));
 
 Q5- Find name and schno of all students who are enrolled in atleast one course in which mohan kumar is enrolled in.
 	SELECT schno from student where fname="MAYANK" AND lname="PATEL"
