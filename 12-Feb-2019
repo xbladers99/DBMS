@@ -94,7 +94,10 @@ Q5- Find name and schno of all students who are enrolled in atleast one course i
 	SELECT distinct schno from grade where code in (SELECT code from grade where schno in (SELECT schno from student where fname="SAMIKSHA" AND lname="PATEL"));
 
 Q6- Find name and schno of all students who are enrolled in all the courses in which mohan kumar is enrolled in.
-
+      select * from student s where not exists (select * from grade g where g.code in
+    (select code from grade where schno in ( select schno from student where fname='PRATEEK')) and not exists 
+    ( select * from grade x where
+    x.code=g.code and s.schno=x.schno));
 
 Q7- Find the course id and course name of 4th sem in which all the students have enrolled.
         select code,cname from course c where not exists (select * from grade g where g.code in
