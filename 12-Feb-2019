@@ -33,7 +33,7 @@ INSERT INTO student() VALUES (17111220,"MAYANK","PATEL","M","1000000000","hostel
 INSERT INTO student() VALUES (17111221,"VEDANT","PATEL","M","1000000001","hostel-5","1999-07-23");
 INSERT INTO student() VALUES (17111222,"ATIK","PATEL","M","1000000002","hostel-5","1999-08-12");
 INSERT INTO student() VALUES (17111223,"DEEPAK","PATEL","M","1000000003","hostel-5","1999-11-10");
-INSERT INTO student() VALUES (17111224,"PRATEEK","VERMA","F","1000000004","hostel-7","1999-2-10");
+INSERT INTO student() VALUES (17111224,"PRATEEK","VERMA","M","1000000004","hostel-7","1999-2-10");
 INSERT INTO student() VALUES (17111225,"SAMIKSHA","PATEL","F","1000000003","hostel-7","1999-3-10");
 INSERT INTO student() VALUES (17111226,"KRATI","PATEL","F","1000000003","hostel-7","1999-10-10");
 INSERT INTO student() VALUES (17111227,"MINAL","PATEL","F","1000000003","hostel-7","1999-11-16");
@@ -65,22 +65,35 @@ INSERT INTO grade() VALUES(17111222,101,89,"C++");
 INSERT INTO grade() VALUES(17111222,104,78,"B");
 INSERT INTO grade() VALUES(17111222,106,34,"D");
 
+INSERT INTO grade() VALUES(17111224,102,90,"A++");
+INSERT INTO grade() VALUES(17111224,103,89,"A");
+INSERT INTO grade() VALUES(17111224,104,99,"A+");
 
-
-
+INSERT INTO grade() VALUES(17111225,103,89,"A");
 
 
 //QUERIES
 
 Q1-Find name of all the instructors and their courses who taught in 4th semester.
-SELECT instructor, cname from course where semester=4;
+	SELECT instructor, cname from course where semester=4;
 
-Q2- Find course name and instructor name of ll the courses on which MAYANK PATEL is enrolled on.
-SELECT cname,instructor from course where code in (SELECT code from grade where schno =(SELECT schno from student where fname="VEDANT" and lname="PATEL"));
+Q2- Find course name and instructor name of all the courses on which MAYANK PATEL is enrolled on.
+	SELECT cname,instructor from course where code in (SELECT code from grade where schno =(SELECT schno from student where fname="VEDANT" and lname="PATEL"));
+
+Q3- Find the name and schno of all students enrolled in atleast one course taught by JTC sir.
+	SELECT distinct schno from grade where code in (SELECT code from course where instructor LIKE '%JTC%');
+	
+Q4- Find the name and schno of all students enrolled in all courses taught by JTC sir.
+	S-(SELECT code from course where instructor LIKE '%JTC%')
+	R- SELECT schno from course where code
+
+Q5- Find name and schno of all students who are enrolled in atleast one course in which mohan kumar is enrolled in.
+	SELECT schno from student where fname="MAYANK" AND lname="PATEL"
+	SELECT code from grade where schno in (SELECT schno from student where fname="MAYANK" AND lname="PATEL")
+	SELECT distinct schno from grade where code in (SELECT code from grade where schno in (SELECT schno from student where fname="SAMIKSHA" AND lname="PATEL"));
+
+Q6- Find name and schno of all students who are enrolled in all the courses in which mohan kumar is enrolled in.
 
 
-
-
-
-
+Q7- Find the course id and course name of 4th sem in which all the students have enrolled.
 
