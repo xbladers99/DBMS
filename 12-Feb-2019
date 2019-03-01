@@ -100,4 +100,5 @@ Q6- Find name and schno of all students who are enrolled in all the courses in w
     x.code=g.code and s.schno=x.schno));
 
 Q7- Find the course id and course name of 4th sem in which all the students have enrolled.
-        
+    select c.cname,c.code from course where not exists(select * from grade g where g.schno in(select schno from student)
+    	and not exists(select * from grade where schno = g.schno and code = c.code)) and semester = 4;
